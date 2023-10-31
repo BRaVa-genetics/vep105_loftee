@@ -37,7 +37,7 @@ Finally, ensure that the VCF file that you pass to VEP is a sites only VCF with 
 ```
 bcftools view --drop-genotypes input_split_multiallelic.vcf.gz -O z -o sites_only_input_split_multiallelic.vcf.gz
 ```
-## VEP annotatation
+## VEP annotation
 Download all required resources into vep_data/. This might take a while, are these files are quite large (many GB)!
 ```
 bash download_data.sh

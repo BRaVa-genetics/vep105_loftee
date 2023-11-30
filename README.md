@@ -112,3 +112,9 @@ bcftools +split-vep out/sites_only_output_chr${chr}_vep.gnomad_popmax_0.01.vcf.g
 sed -i '1i SNP_ID GENE LOF REVEL_SCORE CADD_PHRED CSQ TRANSCRIPT MANE_SELECT CANONICAL BIOTYPE' out/sites_only_output_chr${chr}_vep.gnomad_popmax_0.01_processed.txt
 ```
 The above commands exclude the set of variants in `vep_data/gnomad.exomes.r2.1.1.sites.liftover_grch38_popmax_0.01.tsv.bgz` (which are variants with a popmax > 0.01 in gnomAD v2), splits multiple transcript annotations for a given variant across multiple lines, grabs a subset of columns that we need to define our annotations for the SAIGE group files, and gives them some nice names.
+
+We will also create a processed version of the VEP annotated files without the popMAX filter which will be useful for average allele count and variant count across annotations split by MAF and MAC (see instructions using this output to generate these summary files and plots [here](https://github.com/BRaVa-genetics/BRaVa_curation/tree/main/QC/annotation_summary))
+```
+bcftools +split-vep out/sites_only_output_chr${chr}_vep.vcf.gz -d -f '%CHROM:%POS:%REF:%ALT %Gene %LoF %REVEL_score %CADD_phred %Consequence %Feature %MANE_SELECT %CANONICAL %BIOTYPE\n' -o out/sites_only_output_chr${chr}_vep.processed.txt
+sed -i '1i SNP_ID GENE LOF REVEL_SCORE CADD_PHRED CSQ TRANSCRIPT MANE_SELECT CANONICAL BIOTYPE' out/sites_only_output_chr${chr}_vep.processed.txt
+```

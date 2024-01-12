@@ -71,7 +71,7 @@ Note that in order for the docker container to "see" the files required for VEP 
 ### VEP annotation using Singularity
 Pull docker image built from the Dockerfile in this repo and convert to a singularity.sif.
 ```
-singularity pull --docker-login -disable-cache "vep_data/vep.sif" "docker://ghcr.io/brava-genetics/vep105_loftee:main"
+singularity pull --docker-login --disable-cache "vep_data/vep.sif" "docker://ghcr.io/brava-genetics/vep105_loftee:main"
 ```
 VEP annotate your VCF files. Below is an example, annotating chromosome 21 in UK Biobank data. Go ahead and replace `vep_data/ukb_450k_wes/sites_only_input_split_multiallelic_chr${chr}.vcf.gz` and `out/sites_only_output_chr${chr}_vep.vcf` with the relevant input file and desired output filename, respectively, to annotate your sites only VCFs.
 ```
